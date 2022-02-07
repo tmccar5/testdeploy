@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { NotesState } from './notesReducer';
 import fetchRecVids from './FetchRecVids'
 import { RecVids } from './notesReducer'
+import { VideoList } from './VideoList'
 
 function App() {
   const notes = useSelector<NotesState, NotesState["notes"]>((state) => state.notes )
@@ -19,24 +20,13 @@ function App() {
     dispatch({type: "ADD_RECOMMENDATIONS", payload: recVids})
   }
 
-  const getRecs = async () => {
-    // const recs = await API.getRecomendations()
-    // return recs
-  }
-
-
-
   useEffect(() => {
-    // const recVids = await getRecs()
     async function fetchRecs() {
       const recVids = await fetchRecVids()
       console.log('rec vids in useEffect', recVids)
       addRecs(recVids)
     }
-
     fetchRecs()
-
-    
   }, [])
 
   console.log('recVids from redux state in app', recVids)
@@ -50,6 +40,7 @@ function App() {
         })}
         <li> Some notes</li>
       </ul>
+      <VideoList recVids={recVids}/>
     </>
   );
 }

@@ -28,9 +28,7 @@ type Action = ActionRecVids
 
 export const notesReducer = (state:NotesState = initialState, action: Action) => {
     switch(action.type) {
-        // case "ADD_NOTE": {
-        //     return {...state, notes: [...state.notes, action.payload ] }
-        // }
+       
         case "ADD_RECOMMENDATIONS" : {
             console.log('in add recommendations reducer!!!!')
             return {...state, recVids: [...state.recVids, action.payload] }
