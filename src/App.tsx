@@ -1,25 +1,48 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useEffect } from 'react';
 import './App.css';
+import { NewNoteInput } from './NewNoteInput'
+import { useDispatch, useSelector } from 'react-redux';
+import { NotesState } from './notesReducer';
+import API from './Api'
 
 function App() {
+  const notes = useSelector<NotesState, NotesState["notes"]>((state) => state.notes )
+  const recVids = useSelector<NotesState, NotesState["recVids"]>((state) => state.recVids )
+  
+  const dispatch = useDispatch()
+
+  const addNote = (note:String) => {
+    dispatch({type: "ADD_NOTE", payload: note})
+  }
+  const getRecs = async () => {
+    // const recs = await API.getRecomendations()
+    // return recs
+  }
+
+
+
+  useEffect(() => {
+    // const recVids = await getRecs()
+    async function fetchRecs() {
+      const recVids = await API.getRecomendations()
+      console.log('rec vids in useEffect', recVids)
+    }
+
+    fetchRecs()
+
+    
+  }, [])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <> 
+      <NewNoteInput addNote={addNote} />
+      <ul>
+        {notes.map((note) => {
+         return <li >{note}</li>
+        })}
+        <li> Some notes</li>
+      </ul>
+    </>
   );
 }
 
