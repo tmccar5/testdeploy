@@ -1,21 +1,18 @@
 import React, { useEffect } from 'react';
 import './App.css';
-import { NewNoteInput } from './NewNoteInput'
 import { useDispatch, useSelector } from 'react-redux';
 import { NotesState } from './notesReducer';
 import fetchRecVids from './FetchRecVids'
 import { RecVids } from './notesReducer'
 import { VideoList } from './VideoList'
+import { randomRecData } from './utils/randomRecData';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
-  const notes = useSelector<NotesState, NotesState["notes"]>((state) => state.notes )
   const recVids = useSelector<NotesState, NotesState["recVids"]>((state) => state.recVids )
 
   const dispatch = useDispatch()
 
-  const addNote = (note:String) => {
-    dispatch({type: "ADD_NOTE", payload: note})
-  }
   const addRecs = (recVids:RecVids[]) => {
     dispatch({type: "ADD_RECOMMENDATIONS", payload: recVids})
   }
@@ -26,22 +23,24 @@ function App() {
       console.log('rec vids in useEffect', recVids)
       addRecs(recVids)
     }
+
     fetchRecs()
   }, [])
 
   console.log('recVids from redux state in app', recVids)
+  let displayVids = recVids
+  if(displayVids.length < 1) {
+    displayVids = randomRecData;
+  }
 
+  console.log('i am display vids',displayVids )
   return (
-    <> 
-      <NewNoteInput addNote={addNote} />
+    <div className='App'> 
       <ul>
-        {notes.map((note) => {
-         return <li >{note}</li>
-        })}
-        <li> Some notes</li>
+        <li></li>
       </ul>
-      <VideoList recVids={recVids}/>
-    </>
+      <VideoList deviceType={'mobile'} recVids={displayVids}/>
+    </div>
   );
 }
 
