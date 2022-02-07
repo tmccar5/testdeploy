@@ -1,6 +1,11 @@
 export interface NotesState {
     notes: (string | String)[];
-    recVids: String[];
+    recVids: (String | RecVids)[];
+}
+
+export interface RecVids {
+    id: string,
+    url: string
 }
 
 const initialState: NotesState = {
@@ -27,6 +32,7 @@ export const notesReducer = (state:NotesState = initialState, action: Action) =>
         //     return {...state, notes: [...state.notes, action.payload ] }
         // }
         case "ADD_RECOMMENDATIONS" : {
+            console.log('in add recommendations reducer!!!!')
             return {...state, recVids: [...state.recVids, action.payload] }
             // return state
         }
