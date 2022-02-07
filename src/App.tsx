@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import './App.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { NotesState } from './notesReducer';
+import { AppState } from './notesReducer';
 import fetchRecVids from './FetchRecVids'
 import { RecVids } from './notesReducer'
 import { VideoList } from './VideoList'
@@ -9,7 +9,7 @@ import { randomRecData } from './utils/randomRecData';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
-  const recVids = useSelector<NotesState, NotesState["recVids"]>((state) => state.recVids )
+  const recVids = useSelector<AppState, AppState["recVids"]>((state) => state.recVids )
 
   const dispatch = useDispatch()
 

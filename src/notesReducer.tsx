@@ -1,5 +1,4 @@
-export interface NotesState {
-    notes: (string | String)[];
+export interface AppState {
     recVids: RecVids[];
 }
 
@@ -8,8 +7,8 @@ export interface RecVids {
     url: string
 }
 
-const initialState: NotesState = {
-    notes: [],
+const initialState: AppState = {
+    // notes: [],
     recVids: []
 }
 
@@ -21,7 +20,7 @@ interface ActionRecVids {
 type Action = ActionRecVids
 
 
-export const notesReducer = (state:NotesState = initialState, action: Action) => {
+export const notesReducer = (state:AppState = initialState, action: Action) => {
     switch(action.type) {
      
         case "ADD_RECOMMENDATIONS" : {
