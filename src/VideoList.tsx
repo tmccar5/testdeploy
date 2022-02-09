@@ -7,6 +7,7 @@ interface VideoListProps {
 }
 
 export const VideoList:React.FC<VideoListProps> = ({recVids, deviceType}) => {
+    
     const styles = {
         container:{
             columns: deviceType ==='mobile' ? '2 auto' : '3 auto',
@@ -32,22 +33,11 @@ export const VideoList:React.FC<VideoListProps> = ({recVids, deviceType}) => {
             return (
                 <div key={i}>
                     <iframe width="100%" height="100%" src={recVid.url} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
-                    {/* <video 
-                        poster="https://stuff.fendergarage.com/images/5/o/7/play-unsubscribed-teaser-poster-opt.jpg"
-                        src={recVid.url} 
-                        autoPlay={false} 
-                        controls
-                        className="w-100 bg-black" 
-                        controlsList="nodownload" 
-                        data-id="video-player-basic" 
-                        style={{maxHeight: "46vh",borderRadius: '1%'}}>
-                    </video> */}
+                   
                 </div>
             )
         })}
         </div>
-            
-
         </>
     )
 }

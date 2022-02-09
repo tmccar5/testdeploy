@@ -27,13 +27,12 @@ function App() {
     fetchRecs()
   }, [])
 
-  console.log('recVids from redux state in app', recVids)
   let displayVids = recVids
   if(displayVids.length < 1) {
     displayVids = randomRecData;
   }
 
-  console.log('i am display vids',displayVids )
+  console.log('i am display vids', displayVids )
   return (
     <div className='App'> 
       <ul>

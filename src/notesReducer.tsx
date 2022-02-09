@@ -8,7 +8,6 @@ export interface RecVids {
 }
 
 const initialState: AppState = {
-    // notes: [],
     recVids: []
 }
 
@@ -19,12 +18,10 @@ interface ActionRecVids {
 
 type Action = ActionRecVids
 
-
 export const notesReducer = (state:AppState = initialState, action: Action) => {
     switch(action.type) {
-     
         case "ADD_RECOMMENDATIONS" : {
-            console.log('in add recommendations reducer!!!!')
+            console.log('in add recommendations reducer!!!!', action.payload)
             return {...state, recVids: [...state.recVids, ...action.payload] }
         }
         default:
